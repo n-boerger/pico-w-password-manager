@@ -1,5 +1,5 @@
 from CredentialsList import CredentialsList
-from ListUI import ListUI
+from UI.ListUI import ListUI
 
 class ListController:
     def __init__(self, state):

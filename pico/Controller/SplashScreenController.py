@@ -1,4 +1,4 @@
-from SplashScreenUI import SplashScreenUI
+from UI.SplashScreenUI import SplashScreenUI
 import time
 
 class SplashScreenController:

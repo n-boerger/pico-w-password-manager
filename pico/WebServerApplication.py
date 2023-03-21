@@ -1,5 +1,5 @@
-from UI import UI
-from WebServerController import WebServerController
+from UI.UI import UI
+from Controller.WebServerController import WebServerController
 
 class WebServerApplication:
     def __init__(self):

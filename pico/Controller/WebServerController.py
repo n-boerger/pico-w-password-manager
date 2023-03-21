@@ -1,4 +1,4 @@
-from WebServerUI import WebServerUI
+from UI.WebServerUI import WebServerUI
 from WebServer import WebServer
 
 class WebServerController:

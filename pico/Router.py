@@ -1,6 +1,6 @@
-from ListController import ListController
-from DetailsController import DetailsController
-from SplashScreenController import SplashScreenController
+from Controller.ListController import ListController
+from Controller.DetailsController import DetailsController
+from Controller.SplashScreenController import SplashScreenController
 
 class Router:
     def push(self, route, state):

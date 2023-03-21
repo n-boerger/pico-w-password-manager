@@ -1,5 +1,5 @@
 from CredentialsList import CredentialsList
-from DetailsUI import DetailsUI
+from UI.DetailsUI import DetailsUI
 from Autofill import Autofill
 
 class DetailsController:
