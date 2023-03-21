@@ -23,5 +23,5 @@ web/*.njsproj
 web/*.sln
 web/*.sw?
 
-pico/http
+pico/httpdocs
 pico/passwords.csv

@@ -8,7 +8,7 @@ class WebServer:
     def __init__(self):
         @server.route("/", methods=['GET'])
         def index(request):
-            return render_template("http/index.html")
+            return render_template("httpdocs/index.html")
             
         @server.route("/passwords", methods=['GET'])
         def passwords(request):
@@ -45,7 +45,7 @@ class WebServer:
 
         @server.catchall()
         def catchall(request):
-            filePath = f"http{request.path}"
+            filePath = f"httpdocs{request.path}"
 
             if file_exists(filePath):
                 return FileResponse(filePath)
