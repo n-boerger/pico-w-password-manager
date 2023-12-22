@@ -2,7 +2,7 @@ import usb_device
 from Input import Input
 from Router import Router
 from State import State
-from UI import UI
+from UI.UI import UI
 
 class USBApplication:
     def __init__(self):
