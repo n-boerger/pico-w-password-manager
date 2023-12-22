@@ -1,5 +1,6 @@
 from Credentials import Credentials
 import math
+from phew.server import file_exists
 
 class CredentialsList:
     def __init__(self):
@@ -13,6 +14,11 @@ class CredentialsList:
         file.close()
     
     def file(self):
+        if not file_exists('passwords.csv'):
+            file = open('passwords.csv', 'w')
+            file.write('')
+            file.close()
+
         return open('passwords.csv', 'r')
     
     def getPage(self, page):
