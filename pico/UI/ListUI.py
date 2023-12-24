@@ -1,9 +1,9 @@
 from Color import Color
 
 class ListUI:
-    def __init__(self, items, activeIndex):
+    def __init__(self, items, state):
         self.items = items
-        self.activeIndex = activeIndex
+        self.state = state
     
     def render(self, display):
         offset = 6
@@ -12,7 +12,7 @@ class ListUI:
         for item in self.items:
             fgColor = Color.WHITE
             
-            if index == self.activeIndex:
+            if index == self.state.listIndex:
                 fgColor = Color.BLACK
                 
                 display.fill_rect(0, offset, 240, 20, Color.WHITE)

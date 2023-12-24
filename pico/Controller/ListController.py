@@ -5,7 +5,7 @@ class ListController:
     def __init__(self, state):
         self.state = state
         self.credentialsList = CredentialsList()
-        self.items = self.credentialsList.getPage(self.state.listPage)
+        self.items = self.credentialsList.getItems(self.state)
         self.action = None
     
     def mount(self, userInput, ui):
@@ -18,32 +18,31 @@ class ListController:
     
     def tick(self, ui):
         if self.action == "keyUp":
-            if self.state.listIndex == 0:
-                self.state.listIndex = -1
-                
-                if self.state.listPage == 0:
-                    self.state.listPage = self.credentialsList.pages - 1
+            if self.state.index == 0:
+                self.state.index = self.credentialsList.length - 1
+
+                if self.credentialsList.length < 5:
+                    self.state.listIndex = self.credentialsList.length - 1
                 else:
-                    self.state.listPage -= 1
+                    self.state.listIndex = 4
             else:
-                self.state.listIndex -= 1
-            
-            self.items = self.credentialsList.getPage(self.state.listPage)
-            
-            if self.state.listIndex == -1:
-                self.state.listIndex = self.credentialsList.perPage - 1
+                self.state.index -= 1
+
+                if self.state.index == 0 or self.state.listIndex > 1:
+                    self.state.listIndex -= 1
+                
+            self.items = self.credentialsList.getItems(self.state)
         elif self.action == "keyDown":
-            if self.state.listIndex == self.credentialsList.perPage - 1:
+            if self.state.index == self.credentialsList.length - 1:
+                self.state.index = 0
                 self.state.listIndex = 0
-                
-                if self.state.listPage == self.credentialsList.pages - 1:
-                    self.state.listPage = 0
-                else:
-                    self.state.listPage += 1
             else:
-                self.state.listIndex += 1
-            
-            self.items = self.credentialsList.getPage(self.state.listPage)
+                self.state.index += 1
+
+                if self.state.index == self.credentialsList.length - 1 or self.state.listIndex < 3:
+                    self.state.listIndex += 1
+                
+            self.items = self.credentialsList.getItems(self.state)
         elif self.action == "keyA":
             return "details"
         else:
@@ -56,4 +55,4 @@ class ListController:
         return None
     
     def render(self, ui):
-        ui.render(ListUI(self.items, self.state.listIndex))
+        ui.render(ListUI(self.items, self.state))

@@ -4,12 +4,9 @@ from phew.server import file_exists
 
 class CredentialsList:
     def __init__(self):
-        self.currentPage = 0
-        self.maxPerPage = 5
-        self.perPage = self.maxPerPage
-        
         file = self.file()
-        self.pages = math.ceil(sum(1 for line in file if line.rstrip()) / self.maxPerPage)
+
+        self.length = sum(1 for line in file if line.rstrip())
         
         file.close()
     
@@ -20,16 +17,11 @@ class CredentialsList:
             file.close()
 
         return open('passwords.csv', 'r')
-    
-    def getPage(self, page):
-        if page > self.pages:
-            return
-        
-        self.currentPage = page
-        
+
+    def getItems(self, state):
         items = []
-        startIndex = self.currentPage * self.maxPerPage
-        endIndex = startIndex + self.maxPerPage
+        startIndex = state.index - state.listIndex
+        endIndex = startIndex + 5
         index = 0
         file = self.file()
         
@@ -45,7 +37,5 @@ class CredentialsList:
             index += 1
         
         file.close()
-        
-        self.perPage = len(items)
-        
+
         return items

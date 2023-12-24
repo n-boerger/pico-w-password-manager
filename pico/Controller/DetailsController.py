@@ -9,7 +9,7 @@ class DetailsController:
         self.activeIndex = "username"
         
         credentialsList = CredentialsList()
-        items = credentialsList.getPage(self.state.listPage)
+        items = credentialsList.getItems(self.state)
         self.credentials = items[self.state.listIndex]
     
     def mount(self, userInput, ui):
