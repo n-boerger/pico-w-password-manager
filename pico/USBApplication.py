@@ -57,7 +57,7 @@ class USBApplication:
 
         desc = usb_device.Descriptor()
         desc.device(idVendor=0xF055, idProduct=0xF055)
-        desc.strings(Manufacturer="Nicolas Boerger", Product="Pico Password Manager", CDC="CDC PPM")
+        desc.strings(Manufacturer="n-boerger", Product="Pico Password Manager", CDC="CDC PPM")
         
         userInput = Input()
         state = State()
