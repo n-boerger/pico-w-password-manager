@@ -7,6 +7,7 @@ class ListController:
         self.credentialsList = CredentialsList()
         self.items = self.credentialsList.getItems(self.state)
         self.action = None
+        self.state.length = self.credentialsList.length
     
     def mount(self, userInput, ui):
         userInput.setCallback(self.onAction)

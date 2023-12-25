@@ -1,4 +1,5 @@
 from Color import Color
+from math import ceil
 
 class ListUI:
     def __init__(self, items, state):
@@ -21,3 +22,15 @@ class ListUI:
             
             offset += 26
             index += 1
+
+        if self.state.length > 5:
+            self.renderScrollbar(display)
+        
+    def renderScrollbar(self, display):
+        display.fill_rect(220, 0, 20, 135, Color.BLACK)
+        display.fill_rect(232, 6, 2, 123, Color.WHITE)
+
+        height = ceil(123 / self.state.length)
+        offset = 6 + ceil(self.state.index * (123 / self.state.length))
+
+        display.fill_rect(226, offset, 14, height, Color.WHITE)
