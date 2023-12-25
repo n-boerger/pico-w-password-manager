@@ -3,9 +3,7 @@ from phew.template import render_template
 from phew.server import file_exists, FileResponse, Response
 
 class WebServer:
-    DOMAIN = "ppm.local"
-
-    def __init__(self):
+    def __init__(self, apSettings):
         @server.route("/", methods=['GET'])
         def index(request):
             return render_template("httpdocs/index.html")
@@ -49,9 +47,8 @@ class WebServer:
 
             if file_exists(filePath):
                 return FileResponse(filePath)
-
         
-        accessPoint = access_point("PPM", "hallo124")
+        accessPoint = access_point(apSettings.ssid, apSettings.password)
         ip = accessPoint.ifconfig()[0]
         
         dns.run_catchall(ip)
